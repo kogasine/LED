@@ -7,12 +7,19 @@ int main(void)
 {
 	DDRD=0xff;
 	PORTD=0xff;
-
+	uint8_t A=0b00000001;
+	
 	while (1)
 	{
-		PORTD = 0x00;
-		_delay_ms(300);
-		PORTD = 0xff;
-		_delay_ms(300);
+		for(int i=0;i<7;i++){
+			PORTD=~A;
+			_delay_ms(300);
+			A=(A<<1);
+		}
+		for(int i=0;i<7;i++){
+			PORTD=~A;
+			_delay_ms(300);
+			A=(A>>1);
+		}
 	}
 }
